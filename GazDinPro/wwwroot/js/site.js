@@ -111,16 +111,11 @@ var tableToExcel = (function () {
     }
 })();
 
-onclick = "tableToExcel('resultTable', 'Расчет индексов', 'Расчет_индексов_верха_и_низа_доменной_плавки.xls')"
+onclick = "tableToExcel('resultTable', 'Расчет базового газодинамического режима', 'Расчет_газодинамического_режима_доменной_плавки.xls')"
 
 buttonExport.onclick = function () {
-    if (document.title == "Result - TeploPro") {
-        tableToExcel('resultTable', 'Расчет индексов доменной плавки', 'Расчет_индексов_верха_и_низа_доменной_плавки.xls')
-    } else if (document.title == "ResultTemperature - TeploPro") {
-        tableToExcel('resultTable', 'Расчет теоретической температуры горения', 'Расчет_теор_температуры_горения_углерода_кокса.xls')
-    } else if (document.title == "Comparison - TeploPro") {
-        tableToExcel('resultTable', 'Сопоставление индексов', 'Сопоставление_индексов_верха_и_низа_доменной_плавки.xls')
-    } else if (document.title == "ComparisonTemperature - TeploPro") {
-        tableToExcel('resultTable', 'Сопоставление теор. температуры горения', 'Сопоставление_теор_температуры_горения_углерода_кокса.xls')
+    if (document.title == "Result - GazDinPro") {
+        tableToExcel('resultTable', 'Расчет базового газодинамического режима', 'Расчет_газодинамического_режима_доменной_плавки.xls')
     }
+
 };
