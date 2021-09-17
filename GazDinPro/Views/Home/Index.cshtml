@@ -1,0 +1,602 @@
+﻿@model InputDataModel
+@{ ViewData["Title"] = "Home Page"; }
+
+
+
+<section id="calculation" class="index-calculation">
+    <div class="container">
+        <h2 class="index-calculation__title">Расчёт индексов верха и низа доменной плавки</h2>
+        @if (ViewData["Variant"] != null)
+        {
+<div class="index-calculation__head">
+    <h2 class="index-calculation__heading">Загружен вариант исходных данных от @ViewData["VariantDateTime"]</h2>
+    <a class="index-calculation__back" href="../Index">Сбросить</a>
+</div>
+
+                <script>
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#calculation").offset().top - 60
+                    }, 500);
+                </script> }
+                            else
+                            {
+                <div class="index-calculation__head">
+                    <h2 class="index-calculation__heading">Загружен вариант исходных данных по умолчанию</h2>
+                </div>}
+        <form action="/Home/Index" id="inputForm" method="post" class="index-calculation__form">
+            <table id="resultTable" class="result-table" style="width: 65%; margin: 0 auto 30px auto;">
+                <tr id="thead">
+                    <th colspan="3">Параметр</th>
+                    <th scope="col" style="width: 15%;">Значение</th>
+                    <th scope="col">Ед. изм.</th>
+                </tr>
+                @*
+
+                *@
+                @*Содержание элементов в шлаке*@
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Содержание элементов в шлаке</em></td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">Mn</td>
+                    <td>
+                        <input class="form__input" name="C4" type="text" value=@Model.C4>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">P</td>
+                    <td>
+                        <input class="form__input" name="C5" type="text" value=@Model.C5>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">Si</td>
+                    <td>
+                        <input class="form__input" name="C6" type="text" value=@Model.C6>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">[S]</td>
+                    <td>
+                        <input class="form__input" name="C7" type="text" value=@Model.C7>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">(s)</td>
+                    <td>
+                        <input class="form__input" name="C8" type="text" value=@Model.C8>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">C</td>
+                    <td>
+                        <input class="form__input" name="C9" type="text" value=@Model.C9>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">Ti</td>
+                    <td>
+                        <input class="form__input" name="C10" type="text" value=@Model.C10>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">Cr</td>
+                    <td>
+                        <input class="form__input" name="C11" type="text" value=@Model.C11>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Удельный расход кокса</td>
+                    <td>
+                        <input class="form__input" name="C12" type="text" value=@Model.C12>
+                    </td>
+                    <td>кг/т чугуна (к)</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Зола кокса</td>
+                    <td>
+                        <input class="form__input" name="C13" type="text" value=@Model.C13>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Сера кокса</td>
+                    <td>
+                        <input class="form__input" name="C14" type="text" value=@Model.C14>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Летучие кокса</td>
+                    <td>
+                        <input class="form__input" name="C15" type="text" value=@Model.C15>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание кислорода в дутье (W)</td>
+                    <td>
+                        <input class="form__input" name="C18" type="text" value=@Model.C18>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Влажность дутья (Fд)</td>
+                    <td>
+                        <input class="form__input" name="C19" type="text" value=@Model.C19>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Удельный расход  природного газа (Vпг)</td>
+                    <td>
+                        <input class="form__input" name="C20" type="text" value=@Model.C20>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание С в природном газе (состоит из одного СН4) ((C')=CH4')</td>
+                    <td>
+                        <input class="form__input" name="C21" type="text" value=@Model.C21>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание Н2 в природном газе (состоит из одного СН4) ((H2')=2*CH4)</td>
+                    <td>
+                        <input class="form__input" name="C22" type="text" value=@Model.C22>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание CO2 в колошниковом газе</td>
+                    <td>
+                        <input class="form__input" name="C23" type="text" value=@Model.C23>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание CO в колошниковом газе</td>
+                    <td>
+                        <input class="form__input" name="C24" type="text" value=@Model.C24>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Содержание H2 в колошниковом газе</td>
+                    <td>
+                        <input class="form__input" name="C25" type="text" value=@Model.C25>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Суточная производительность печи по чугуну (Р)</td>
+                    <td>
+                        <input class="form__input" name="C28" type="text" value=@Model.C28>
+                    </td>
+                    <td>т/сут</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Диаметр горна (dг)</td>
+                    <td>
+                        <input class="form__input" name="C29" type="text" value=@Model.C29>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Диаметр распара (D)</td>
+                    <td>
+                        <input class="form__input" name="C30" type="text" value=@Model.C30>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Диаметр колошника (dк)</td>
+                    <td>
+                        <input class="form__input" name="C31" type="text" value=@Model.C31>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Высота заплечиков (hЗ)</td>
+                    <td>
+                        <input class="form__input" name="C32" type="text" value=@Model.C32>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Высота распара (hР)</td>
+                    <td>
+                        <input class="form__input" name="C33" type="text" value=@Model.C33>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Высоты шахты (hШ)</td>
+                    <td>
+                        <input class="form__input" name="C34" type="text" value=@Model.C34>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Высоты колошника (hК)</td>
+                    <td>
+                        <input class="form__input" name="C35" type="text" value=@Model.C35>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Уровень засыпи (hУЗ)</td>
+                    <td>
+                        <input class="form__input" name="C36" type="text" value=@Model.C36>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Температура горячего дутья (tД)</td>
+                    <td>
+                        <input class="form__input" name="C37" type="text" value=@Model.C37>
+                    </td>
+                    <td>°С</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Теплоёмкость кокса (СК)</td>
+                    <td>
+                        <input class="form__input" name="C38" type="text" value=@Model.C38>
+                    </td>
+                    <td>кДж/(кг*К)</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Температура кокса, пришедшего к фурмам (tC)</td>
+                    <td>
+                        <input class="form__input" name="C39" type="text" value=@Model.C39>
+                    </td>
+                    <td>°С</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Теплота неполного горения С кокса  (Wc)</td>
+                    <td>
+                        <input class="form__input" name="C40" type="text" value=@Model.C40>
+                    </td>
+                    <td>кДж/кг</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Теплота неполного горения природного газа (Ws)</td>
+                    <td>
+                        <input class="form__input" name="C41" type="text" value=@Model.C41>
+                    </td>
+                    <td>кДж/м3</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Избыточное давление горячего дутья (PД)</td>
+                    <td>
+                        <input class="form__input" name="C42" type="text" value=@Model.C42>
+                    </td>
+                    <td>ати</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Избыточное давление колошникового газа (PКГ)</td>
+                    <td>
+                        <input class="form__input" name="C43" type="text" value=@Model.C43>
+                    </td>
+                    <td>ати</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Удельный выход шлака (UШЛ)</td>
+                    <td>
+                        <input class="form__input" name="C44" type="text" value=@Model.C44>
+                    </td>
+                    <td>кг/т чугуна</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Плотность шлака (PШЛ)</td>
+                    <td>
+                        <input class="form__input" name="C45" type="text" value=@Model.C45>
+                    </td>
+                    <td>кг/м3</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Минутный расход дутья (VКИПОБ)</td>
+                    <td>
+                        <input class="form__input" name="C47" type="text" value=@Model.C47>
+                    </td>
+                    <td>м3/мин</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Удельный расход железорудного материала (GЖРМ)</td>
+                    <td>
+                        <input class="form__input" name="C49" type="text" value=@Model.C49>
+                    </td>
+                    <td>т/т чугуна</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Удельный расход: известняка</td>
+                    <td>
+                        <input class="form__input" name="C52" type="text" value=@Model.C52>
+                    </td>
+                    <td>кг/т чугуна</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Температура колошникового газа (tКГ)</td>
+                    <td>
+                        <input class="form__input" name="C56" type="text" value=@Model.C56>
+                    </td>
+                    <td>°С</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Потери давления горячего дутья по тракту подачи (m)</td>
+                    <td>
+                        <input class="form__input" name="C57" type="text" value=@Model.C57>
+                    </td>
+                    <td>доли ед.</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Нижний перепад давления (ΔPНизм)</td>
+                    <td>
+                        <input class="form__input" name="C58" type="text" value=@Model.C58>
+                    </td>
+                    <td>атм</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Верхний перепад давления (tΔPВизм)</td>
+                    <td>
+                        <input class="form__input" name="C59" type="text" value=@Model.C59>
+                    </td>
+                    <td>атм</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Критическая степень уравновешивания шихты (СУКР)</td>
+                    <td>
+                        <input class="form__input" name="C60" type="text" value=@Model.C60>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Доля окатышей в железорудной части шихты</td>
+                    <td>
+                        <input class="form__input" name="C61" type="text" value=@Model.C61>
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Число работающих воздушных фурм (n)</td>
+                    <td>
+                        <input class="form__input" name="C62" type="text" value=@Model.C62>
+                    </td>
+                    <td>шт</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Диаметр воздушных фурм (dф)</td>
+                    <td>
+                        <input class="form__input" name="C63" type="text" value=@Model.C63>
+                    </td>
+                    <td>мм</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Длина фурмы (L)</td>
+                    <td>
+                        <input class="form__input" name="C64" type="text" value=@Model.C64>
+                    </td>
+                    <td>м</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Потеря массы при прокаливании  ((ппмп)и)</td>
+                    <td>
+                        <input class="form__input" name="C65" type="text" value=@Model.C65>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Плотность агломерата</td>
+                    <td>
+                        <input class="form__input" name="C67" type="text" value=@Model.C67>
+                    </td>
+                    <td>т/м3</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Плотность окатышей</td>
+                    <td>
+                        <input class="form__input" name="C68" type="text" value=@Model.C68>
+                    </td>
+                    <td>т/м3</td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row">Плотность кокса</td>
+                    <td>
+                        <input class="form__input" name="C69" type="text" value=@Model.C69>
+                    </td>
+                    <td>т/м3</td>
+                </tr>
+
+
+                @*Гранулометрический состав кокса*@
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Гранулометрический состав кокса</em></td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">>80</td>
+                    <td>
+                        <input class="form__input" name="I40" type="text" value=@Model.I40>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">80-60</td>
+                    <td>
+                        <input class="form__input" name="J40" type="text" value=@Model.J40>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">60-40</td>
+                    <td>
+                        <input class="form__input" name="K40" type="text" value=@Model.K40>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">40-25</td>
+                    <td>
+                        <input class="form__input" name="L40" type="text" value=@Model.L40>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters"> меньше 25 </td>
+                    <td>
+                        <input class="form__input" name="M40" type="text" value=@Model.M40>
+                    </td>
+                    <td>%</td>
+                </tr>
+                @*Гранулометрический состав и порозность агломерата*@
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Гранулометрический состав и порозность агломерата</em></td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+                </tr>
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">>25</td>
+                    <td>
+                        <input class="form__input" name="I45" type="text" value=@Model.I45>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">25-10</td>
+                    <td>
+                        <input class="form__input" name="J45" type="text" value=@Model.J45>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">10-5</td>
+                    <td>
+                        <input class="form__input" name="K45" type="text" value=@Model.K45>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">меньше 5</td>
+                    <td>
+                        <input class="form__input" name="L45" type="text" value=@Model.L45>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+                @*Гранулометрический состав окатышей*@
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Гранулометрический состав окатышей</em></td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+                </tr>
+
+
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">>10</td>
+                    <td>
+                        <input class="form__input" name="J50" type="text" value=@Model.J50>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">10-5</td>
+                    <td>
+                        <input class="form__input" name="K50" type="text" value=@Model.K50>
+                    </td>
+                    <td>%</td>
+                </tr>
+                <tr class="calculate-data">
+                    <td colspan="3" scope="row" class="result-table-parameters">меньше 5</td>
+                    <td>
+                        <input class="form__input" name="L50" type="text" value=@Model.L50>
+                    </td>
+                    <td>%</td>
+                </tr>
+
+            </table>
+            @if (ViewData["Variant"] != null)
+            {
+<input class="form__input" name="inputId" type="number" value=@ViewData["Variant"] hidden>            }
+            @if (!ViewBag.IsSavedInputData)
+            {
+<div class="checkbox-content">
+    <input id="checkbox-save" type="checkbox" name="isSaveInputs" value="true" checked>
+    <label for="checkbox-save">Сохранить вариант расчёта</label>
+</div>
+                <button id="submitButton" class="form__submit" type="submit">Отправить</button> }
+                            else
+                            {
+                <button id="submitButton" class="form__submit" type="submit">Показать результат</button>            }
+        </form>
+    </div>
+</section>
+

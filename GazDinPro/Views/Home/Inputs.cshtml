@@ -1,0 +1,31 @@
+﻿@model IEnumerable<GazDinPro.Models.InputDataModel>
+@{ ViewData["Title"] = "Варианты исходных данных"; }
+
+<section class="inputs-main">
+    <div class="container">
+        <div class="inputs-main__head">
+            <h2 class="inputs-main__heading">Варианты исходных данных</h2>
+            <a class="inputs-main__back" asp-area="" asp-controller="Home" asp-action="Index">Назад</a>
+        </div>
+        <div class="inputs-main__block">
+            <div class="inputs-main__content content-inputs">
+                <h3 class="content-inputs__heading">Варианты исходных данных для расчета индексов верха и низа доменной плавки</h3>
+                @if (Model.Count() == 0)
+                {
+    <p>На данный момент вариантов исходных данных нет. Необходимо отправить форму для расчета на главной странице.</p> }
+                else
+                {
+    @foreach (var item in Model)
+    {
+
+<a asp-action="Index" asp-controller="Home" asp-route-id="@item.Id">
+    Вариант от @item.DateOfResult
+</a>}}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+

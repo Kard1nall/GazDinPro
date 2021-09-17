@@ -1,0 +1,1295 @@
+﻿@model GazDinPro.Models.HomeViewModels.ResultViewModel
+@{ ViewData["Title"] = "Result"; }
+
+<section class="result-main">
+    <div class="container">
+        <div class="result-main__head">
+            <h2 class="result-main__heading">Результаты расчета проектных показателей газодинамического режима при изменнии режимных и конструктивных параметров доменной печи</h2>
+            @*<a class="result-main__back" asp-area="" asp-controller="Home" asp-action="Index">Назад</a>*@
+        </div>
+
+
+        <table id="resultTable" class="result-table">
+            @* ИСХОДНЫЕ ДАННЫЕ *@
+            <tr>
+                <td colspan="5" style="        text-align: center;
+        background-color: #329ac1;">
+                    ИСХОДНЫЕ ДАННЫЕ
+                </td>
+            </tr>
+            <tr id="thead">
+                <th colspan="3">Параметр</th>
+                <th scope="col">Значение</th>
+                <th scope="col">Ед. изм.</th>
+            </tr>
+
+            @*Содержание элементов в шлаке*@
+            <tr>
+                <td colspan="3" scope="row"><em>Содержание элементов в шлаке</em></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="3" scope="row">Fe</td>
+                <td>
+                    @Math.Round(Model.Result.C3, 4)
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr>
+                <td colspan="3" scope="row">Mn</td>
+                <td>
+                    @Model.Input.C4
+                </td>
+                <td>%</td>
+            </tr>
+
+
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">P</td>
+                <td>
+                    @Model.Input.C5
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Si</td>
+                <td>
+                    @Model.Input.C6
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">[S]</td>
+                <td>
+                    @Model.Input.C7
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">(s)</td>
+                <td>
+                    @Model.Input.C8
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">C</td>
+                <td>
+                    @Model.Input.C9
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Ti</td>
+                <td>
+                    @Model.Input.C10
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Cr</td>
+                <td>
+                    @Model.Input.C11
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход кокса</td>
+                <td>
+                    @Model.Input.C12
+                </td>
+                <td>кг/т чугуна (к)</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Зола кокса</td>
+                <td>
+                    @Model.Input.C13
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Сера кокса</td>
+                <td>
+                    @Model.Input.C14
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Летучие кокса</td>
+                <td>
+                    @Model.Input.C15
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание "нелетучего" углерода в коксе (Снел)</td>
+                <td>
+                    @Math.Round(Model.Result.C16, 4)
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Степень прямого восстановления (rd)</td>
+                <td>
+                    @Math.Round(Model.Result.C17, 4)
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание кислорода в дутье (W)</td>
+                <td>
+                    @Model.Input.C18
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Влажность дутья (Fд)</td>
+                <td>
+                    @Model.Input.C19
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход  природного газа (Vпг)</td>
+                <td>
+                    @Model.Input.C20
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание С в природном газе (состоит из одного СН4) ((C')=CH4')</td>
+                <td>
+                    @Model.Input.C21
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание Н2 в природном газе (состоит из одного СН4) ((H2')=2*CH4)</td>
+                <td>
+                    @Model.Input.C22
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание CO2 в колошниковом газе</td>
+                <td>
+                    @Model.Input.C23
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание CO в колошниковом газе</td>
+                <td>
+                    @Model.Input.C24
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Содержание H2 в колошниковом газе</td>
+                <td>
+                    @Model.Input.C25
+                </td>
+                <td>%</td>
+            </tr>
+
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Степень использования CO в печи (nCO)</td>
+                <td>
+                    @Math.Round(Model.Result.C26, 4)
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Степень использования водорода в печи (nH2)</td>
+                <td>
+                    @Math.Round(Model.Result.C27, 4)
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Суточная производительность печи по чугуну (Р)</td>
+                <td>
+                    @Model.Input.C28
+                </td>
+                <td>т/сут</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Диаметр горна (dг)</td>
+                <td>
+                    @Model.Input.C29
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Диаметр распара (D)</td>
+                <td>
+                    @Model.Input.C30
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Диаметр колошника (dк)</td>
+                <td>
+                    @Model.Input.C31
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Высота заплечиков (hЗ)</td>
+                <td>
+                    @Model.Input.C32
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Высота распара (hР)</td>
+                <td>
+                    @Model.Input.C33
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Высоты шахты (hШ)</td>
+                <td>
+                    @Model.Input.C34
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Высоты колошника (hК)</td>
+                <td>
+                    @Model.Input.C35
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Уровень засыпи (hУЗ)</td>
+                <td>
+                    @Model.Input.C36
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Температура горячего дутья (tД)</td>
+                <td>
+                    @Model.Input.C37
+                </td>
+                <td>°С</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Теплоёмкость кокса (СК)</td>
+                <td>
+                    @Model.Input.C38
+                </td>
+                <td>кДж/(кг*К)</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Температура кокса, пришедшего к фурмам (tC)</td>
+                <td>
+                    @Model.Input.C39
+                </td>
+                <td>°С</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Теплота неполного горения С кокса  (Wc)</td>
+                <td>
+                    @Model.Input.C40
+                </td>
+                <td>кДж/кг</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Теплота неполного горения природного газа (Ws)</td>
+                <td>
+                    @Model.Input.C41
+                </td>
+                <td>кДж/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Избыточное давление горячего дутья (PД)</td>
+                <td>
+                    @Model.Input.C42
+                </td>
+                <td>ати</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Избыточное давление колошникового газа (PКГ)</td>
+                <td>
+                    @Model.Input.C43
+                </td>
+                <td>ати</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный выход шлака (UШЛ)</td>
+                <td>
+                    @Model.Input.C44
+                </td>
+                <td>кг/т чугуна</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Плотность шлака (PШЛ)</td>
+                <td>
+                    @Model.Input.C45
+                </td>
+                <td>кг/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Минутный расход дутья (VКИПОБ)</td>
+                <td>
+                    @Model.Input.C47
+                </td>
+                <td>м3/мин</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Среднее значение поперечного сечения нижней зоны печи (S'Н)</td>
+                <td>
+                    @Math.Round(Model.Result.C48, 4)
+                </td>
+                <td>м2</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход железорудного материала (GЖРМ)</td>
+                <td>
+                    @Model.Input.C49
+                </td>
+                <td>т/т чугуна</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход: агломерата (GАГЛ)</td>
+                <td>
+                    @Math.Round(Model.Result.C50, 4)
+                </td>
+                <td>т/т чугуна</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход: окатышей (GОК)</td>
+                <td>
+                    @Math.Round(Model.Result.C51, 4)
+                </td>
+                <td>т/т чугуна</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Удельный расход: известняка</td>
+                <td>
+                    @Model.Input.C52
+                </td>
+                <td>кг/т чугуна</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Насыпные массы: агломерата (ГНАГЛ)</td>
+                <td>
+                    @Math.Round(@Model.Result.C53, 4)
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Насыпные массы: окатышей (ГНОК)</td>
+                <td>
+                    @Math.Round(Model.Result.C54, 4)
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Насыпные массы: кокса (ГНК)</td>
+                <td>
+                    @Math.Round(Model.Result.C55, 4)
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Температура колошникового газа (tКГ)</td>
+                <td>
+                    @Model.Input.C56
+                </td>
+                <td>°С</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Потери давления горячего дутья по тракту подачи (m)</td>
+                <td>
+                    @Model.Input.C57
+                </td>
+                <td>доли ед.</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Нижний перепад давления (ΔPНизм)</td>
+                <td>
+                    @Model.Input.C58
+                </td>
+                <td>атм</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Верхний перепад давления (tΔPВизм)</td>
+                <td>
+                    @Model.Input.C59
+                </td>
+                <td>атм</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Критическая степень уравновешивания шихты (СУКР)</td>
+                <td>
+                    @Model.Input.C60
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Доля окатышей в железорудной части шихты</td>
+                <td>
+                    @Model.Input.C61
+                </td>
+                <td></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Число работающих воздушных фурм (n)</td>
+                <td>
+                    @Model.Input.C62
+                </td>
+                <td>шт</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Диаметр воздушных фурм (dф)</td>
+                <td>
+                    @Model.Input.C63
+                </td>
+                <td>мм</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Длина фурмы (L)</td>
+                <td>
+                    @Model.Input.C64
+                </td>
+                <td>м</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Потеря массы при прокаливании  ((ппмп)и)</td>
+                <td>
+                    @Model.Input.C65
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Плотность агломерата</td>
+                <td>
+                    @Model.Input.C67
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Плотность окатышей</td>
+                <td>
+                    @Model.Input.C68
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Плотность кокса</td>
+                <td>
+                    @Model.Input.C69
+                </td>
+                <td>т/м3</td>
+            </tr>
+
+
+            @*Гранулометрический состав кокса*@
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Гранулометрический состав кокса</em></td>
+
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">>80</td>
+                <td>
+                    @Model.Input.I40
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">80-60</td>
+                <td>
+                    @Model.Input.J40
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">60-40</td>
+                <td>
+                    @Model.Input.K40
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">40-25</td>
+                <td>
+                    @Model.Input.L40
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"> меньше 25 </td>
+                <td>
+                    @Model.Input.M40
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">сумма</td>
+                <td>
+                    @Math.Round(Model.Result.N40, 2)
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Порозность</td>
+                <td>
+                    @Math.Round(Model.Result.H41, 2)
+                </td>
+                <td>м3/м3</td>
+            </tr>
+            @*Гранулометрический состав и порозность агломерата*@
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Гранулометрический состав и порозность агломерата</em></td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">>25</td>
+                <td>
+                    @Model.Input.I45
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">25-10</td>
+                <td>
+                    @Model.Input.J45
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">10-5</td>
+                <td>
+                    @Model.Input.K45
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">меньше 5</td>
+                <td>
+                    @Model.Input.L45
+                </td>
+                <td>%</td>
+            </tr>
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">сумма</td>
+                <td>
+                    @Math.Round(Model.Result.M45, 2)
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Порозность</td>
+                <td>
+                    @Math.Round(Model.Result.H46, 2)
+                </td>
+                <td>м3/м3</td>
+            </tr>
+            @*Гранулометрический состав окатышей*@
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Гранулометрический состав окатышей</em></td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row"><em>Содержание фракции, % (по размеру фракции, мм)</em></td>
+            </tr>
+
+
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">>10</td>
+                <td>
+                    @Model.Input.J50
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">10-5</td>
+                <td>
+                    @Model.Input.K50
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">меньше 5</td>
+                <td>
+                    @Model.Input.L50
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">сумма</td>
+                <td>
+                    @Math.Round(Model.Result.M50, 2)
+                </td>
+                <td>%</td>
+            </tr>
+            <tr class="calculate-data">
+                <td colspan="3" scope="row">Порозность</td>
+                <td>
+                    @Math.Round(Model.Result.H51, 2)
+                </td>
+                <td>м3/м3</td>
+            </tr>
+            @* РЕЗУЛЬТАТЫ РАСЧЕТА *@
+            <tr>
+                <td colspan="5" style="text-align: center; background-color: aquamarine;">РЕЗУЛЬТАТЫ РАСЧЕТА</td>
+            </tr>
+
+
+
+            <tr>
+                <td colspan="3" scope="row">Количество углерода (С), пришедшего в печь с коксом (Сприш)</td>
+                <td>@Math.Round(Model.Result.B_C3, 4)</td>
+                <td>кг/т</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расход С на прямое восстановление оксидов Fe, Mn,Si, а также на десульфурацию (Спр)</td>
+                <td>@Math.Round(Model.Result.B_C4, 4)</td>
+                <td>кг/т</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Растворяется углерода в чугуне (Сч)</td>
+                <td>@Math.Round(Model.Result.B_C5, 4)</td>
+                <td>кг/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расход С на образование метана (CСН4)</td>
+                <td>@Math.Round(Model.Result.B_C6, 4)</td>
+                <td>кг/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Количество С сгорающего у фурм (Сф)</td>
+                <td>@Math.Round(Model.Result.B_C7, 4)</td>
+                <td>кг/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расход сухого дутья на 1 кг С кокса (Vд')</td>
+                <td>@Math.Round(Model.Result.B_C8, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расход сухого дутья для конверсии 1 м3 прир. газа (Vд'')</td>
+                <td>@Math.Round(Model.Result.B_C9, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Суммарный расход сухого дутья  (Vд)</td>
+                <td>@Math.Round(Model.Result.B_C10, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчетный удельный расход дутья (Qд)</td>
+                <td>@Math.Round(Model.Result.B_C11, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Выход фурменного газа на  1кг С кокса, сгорающего у фурм  (Vг')</td>
+                <td>@Math.Round(Model.Result.B_C12, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Выход фурменного газа при конверсии 1 м3 природного газа (Vг'')</td>
+                <td>@Math.Round(Model.Result.B_C13, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Суммарный выход фурменного газа (Vгг)</td>
+                <td>@Math.Round(Model.Result.B_C14, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный выход фурменного (горнового) газа (Qгг)</td>
+                <td>@Math.Round(Model.Result.B_C15, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав фурменного (горнового) газа (Vсо)</td>
+                <td>@Math.Round(Model.Result.B_C16, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав фурменного (горнового) газа (VН2)</td>
+                <td>@Math.Round(Model.Result.B_C17, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав фурменного (горнового) газа (VN2)</td>
+                <td>@Math.Round(Model.Result.B_C18, 4)</td>
+                <td>м3/кгСф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Содержание отдельных составляющих в горновом газе ((СО))</td>
+                <td>@Math.Round(Model.Result.B_C19, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Содержание отдельных составляющих в горновом газе ((Н2))</td>
+                <td>@Math.Round(Model.Result.B_C20, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Содержание отдельных составляющих в горновом газе ((N2))</td>
+                <td>@Math.Round(Model.Result.B_C21, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">CO2, образующийся при восстановлении оксидов Fe, Mn, Si, P, а также при десульфурации (Vпвco)</td>
+                <td>@Math.Round(Model.Result.B_C22, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём Vсо при t=1000 (Vt=1000co)</td>
+                <td>@Math.Round(Model.Result.B_C23, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём Н2 при t=1000 (Vt=1000Н2)</td>
+                <td>@Math.Round(Model.Result.B_C24, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём N2 при t=1000 (Vt=1000N2)</td>
+                <td>@Math.Round(Model.Result.B_C25, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Суммарный объём на температурной зоне t=1000 (Vгаз)</td>
+                <td>@Math.Round(Model.Result.B_C26, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав доменного газа на горизонте t=1000 (COt=1000)</td>
+                <td>@Math.Round(Model.Result.B_C27, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав доменного газа на горизонте t=1000 (H2t=1000)</td>
+                <td>@Math.Round(Model.Result.B_C28, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Состав доменного газа на горизонте t=1000 (N2t=1000)</td>
+                <td>@Math.Round(Model.Result.B_C29, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Плотность газа на горизонте 1000 °С при н.у. (Ро)</td>
+                <td>@Math.Round(Model.Result.B_C30, 4)</td>
+                <td>кг/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Секундный расход доменного газа на горизонте 1000 °С (Qгс)</td>
+                <td>@Math.Round(Model.Result.B_C31, 4)</td>
+                <td>м3/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">"Средний" диаметр нижней части доменной печи (d'н)</td>
+                <td>@Math.Round(Model.Result.B_C32, 4)</td>
+                <td>м</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость фильтрации газового потока в нижней зоне печи при  н.у. (Wн)</td>
+                <td>@Math.Round(Model.Result.B_C33, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теплоёмкость двуатомных газов при температуре горячего дутья (CO)</td>
+                <td>@Math.Round(Model.Result.B_C34, 4)</td>
+                <td>кДж/(м3*К)</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теплоёмкость паров воды при температуре горячего дутья (CH2O)</td>
+                <td>@Math.Round(Model.Result.B_C35, 4)</td>
+                <td>кДж/(м3*К)</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теплосодержание горячего дутья за вычетом теплоты разложения влаги дутья (iД)</td>
+                <td>@Math.Round(Model.Result.B_C36, 4)</td>
+                <td>кДж/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теплосодержание углеродо кокса, пришедшего к фурмам (iС)</td>
+                <td>@Math.Round(Model.Result.B_C37, 4)</td>
+                <td>кДж/кг</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расход природного газа в расчёте на 1кг кокса, сгорающего у фурм (m)</td>
+                <td>@Math.Round(Model.Result.B_C38, 4)</td>
+                <td>м3/кг Сф</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теплосодержание горновых газов при теоретической температуре горения (c0tT)</td>
+                <td>@Math.Round(Model.Result.B_C39, 4)</td>
+                <td>кДж/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Теоретическая температуре горения (tТ)</td>
+                <td>@Math.Round(Model.Result.B_C40, 4)</td>
+                <td>°С</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Средняя температура газов в нижней зоне печи (tН)</td>
+                <td>@Math.Round(Model.Result.B_C41, 4)</td>
+                <td>°С</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчетное значение минутного расхода дутья (Vд)</td>
+                <td>@Math.Round(Model.Result.B_C42, 4)</td>
+                <td>м3/мин</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость истечения дутья из фурмы  (W)</td>
+                <td>@Math.Round(Model.Result.B_C43, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Кинематическая вязкость дутья  (ν)</td>
+                <td>@Math.Round(Model.Result.B_C44, 4)</td>
+                <td>м2/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Значение критерия Рейнольдса (Re)</td>
+                <td>@Math.Round(Model.Result.B_C45, 4)</td>
+                <td>°С</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Значение коэффициента трения (λ)</td>
+                <td>@Math.Round(Model.Result.B_C46, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Потери напора дутья на воздушных фурмах (Δpвф)</td>
+                <td>@Math.Round(Model.Result.B_C47, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Нижний перепад давления газов по высоте слоя шихты (ΔPН)</td>
+                <td>@Math.Round(Model.Result.B_C48, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Доля нижнего перепада давления газов от общего перепада (alfa)</td>
+                <td>@Math.Round(Model.Result.B_C49, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Избыточное давление газа на горизонте 1000 °С  (PГt=1000)</td>
+                <td>@Math.Round(Model.Result.B_C50, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Среднее значение абсолютного давления газа в нижней зоне печи (P'Н)</td>
+                <td>@Math.Round(Model.Result.B_C51, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Высота слоя шихты в нижней зоне печи  (ННш)</td>
+                <td>@Math.Round(Model.Result.B_C52, 4)</td>
+                <td>м</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Эквивалентный диаметр кусков кокса (dЭК)</td>
+                <td>@Math.Round(Model.Result.B_C53, 4)</td>
+                <td>мм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Порозность слоя кокса (eK)</td>
+                <td>@Math.Round(Model.Result.B_C54, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный объём образующегося шлака (VШЛ)</td>
+                <td>@Math.Round(Model.Result.B_C55, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный объём кокса на получение 1 т чугуна (VК)</td>
+                <td>@Math.Round(Model.Result.B_C56, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный объём межкусковых пространств коксовой насадки (VОБ)</td>
+                <td>@Math.Round(Model.Result.B_C57, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Оставшийся удельный объём межкусковых пространств коксовой насадки (V'ОБ)</td>
+                <td>@Math.Round(Model.Result.B_C58, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скоректированная порозность слоя (с учетом нахождения в насадке шлак раслава) (e'K)</td>
+                <td>@Math.Round(Model.Result.B_C59, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент сопротивления (Lamda)</td>
+                <td>@Math.Round(Model.Result.B_C60, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент пропорциональности между минутным расходом дутья и скоростью фильтрации газа в нижнеи зоне печи (кН)</td>
+                <td>@Math.Round(Model.Result.B_C61, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент АН (АН)</td>
+                <td>@Math.Round(Model.Result.B_C62, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём СО2 при разложении известняка (VИСО2)</td>
+                <td>@Math.Round(Model.Result.B_C63, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём СО2 при косвенном восстановлении оксидов железа (VКВСО2)</td>
+                <td>@Math.Round(Model.Result.B_C64, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём СО2 в колошниковом газе (VКГСО2)</td>
+                <td>@Math.Round(Model.Result.B_C65, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём СО в колошниковом газе (VКГСО)</td>
+                <td>@Math.Round(Model.Result.B_C66, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём СН4 в колошниковом газе (VКГСН4)</td>
+                <td>@Math.Round(Model.Result.B_C67, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём N2 в колошниковом газе (VКГN2)</td>
+                <td>@Math.Round(Model.Result.B_C68, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объём Н2 в колошниковом газе (VКГН2)</td>
+                <td>@Math.Round(Model.Result.B_C69, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный выход колошникового газа при  н.у. (VКГ)</td>
+                <td>@Math.Round(Model.Result.B_C70, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчётный состав колошникового газа (CO2)</td>
+                <td>@Math.Round(Model.Result.B_C71, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчётный состав колошникового газа (CO)</td>
+                <td>@Math.Round(Model.Result.B_C72, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчётный состав колошникового газа (H2)</td>
+                <td>@Math.Round(Model.Result.B_C73, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчётный состав колошникового газа (CH4)</td>
+                <td>@Math.Round(Model.Result.B_C74, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Расчётный состав колошникового газа (N2)</td>
+                <td>@Math.Round(Model.Result.B_C75, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Плотность колошникового газа при н.у. в верхней зоне (РОВ)</td>
+                <td>@Math.Round(Model.Result.B_C76, 4)</td>
+                <td>кг/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Секундный выход колошникового газа (QСКГ)</td>
+                <td>@Math.Round(Model.Result.B_C77, 4)</td>
+                <td>м3/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">"Средний" диаметр верхней части печи (d'в )</td>
+                <td>@Math.Round(Model.Result.B_C78, 4)</td>
+                <td>м</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость фильтрации газового потока в верхней зоне печи (Wв)</td>
+                <td>@Math.Round(Model.Result.B_C79, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Эквивалентный диаметр куска агломерата (dЭАГЛ)</td>
+                <td>@Math.Round(Model.Result.B_C80, 4)</td>
+                <td>мм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Порозность слоя агломерата  (eагл)</td>
+                <td>@Math.Round(Model.Result.B_C81, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Порозность слоя окатышей (eок)</td>
+                <td>@Math.Round(Model.Result.B_C82, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный расход агломерата (GАГЛ)</td>
+                <td>@Math.Round(Model.Result.B_C83, 4)</td>
+                <td>т/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный расход окатышей (GОК)</td>
+                <td>@Math.Round(Model.Result.B_C84, 4)</td>
+                <td>т/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Удельный расход кокса, выраженный в т/т чугуна (GК)</td>
+                <td>@Math.Round(Model.Result.B_C85, 4)</td>
+                <td>т/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Масса шихты на 1 тонну чугуна (GШ)</td>
+                <td>@Math.Round(Model.Result.B_C86, 4)</td>
+                <td>т/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмы шихтовых материалов на 1 тонну чугуна (VАГЛ)</td>
+                <td>@Math.Round(Model.Result.B_C87, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмы шихтовых материалов на 1 тонну чугуна (VОК)</td>
+                <td>@Math.Round(Model.Result.B_C88, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмы шихтовых материалов на 1 тонну чугуна (VК)</td>
+                <td>@Math.Round(Model.Result.B_C89, 4)</td>
+                <td>м3/т чугуна</td>
+            </tr>
+
+            <tr>
+                <td colspan="3" scope="row">Суммарный объём шихты на получение 1 тонны чугуна (VШ)</td>
+                <td>@Math.Round(Model.Result.B_C90, 4)</td>
+                <td>м3/т чугуна </td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Насыпная масса слоя агломерата</td>
+                <td>@Math.Round(Model.Result.B_C91, 4)</td>
+                <td>т/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Насыпная масса слоя окатышей</td>
+                <td>@Math.Round(Model.Result.B_C92, 4)</td>
+                <td>т/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Насыпная масса слоя кокса</td>
+                <td>@Math.Round(Model.Result.B_C93, 4)</td>
+                <td>т/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Насыпная масса слоя шихты (ГНШ)</td>
+                <td>@Math.Round(Model.Result.B_C94, 4)</td>
+                <td>т/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмные доли компонентов шихты (AlfaАГЛ)</td>
+                <td>@Math.Round(Model.Result.B_C95, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмные доли компонентов шихты (AlfaОК)</td>
+                <td>@Math.Round(Model.Result.B_C96, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Объёмные доли компонентов шихты (AlfaК)</td>
+                <td>@Math.Round(Model.Result.B_C97, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Порозность слоя шихты в печи в верхней зоне (eВШ)</td>
+                <td>@Math.Round(Model.Result.B_C98, 4)</td>
+                <td>м3/м3</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Эквивалентный диаметр куска шихты в верхней зоне (dЭВ)</td>
+                <td>@Math.Round(Model.Result.B_C99, 4)</td>
+                <td>мм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Высота слоя шихты в верхней зоне печи (НВ)</td>
+                <td>@Math.Round(Model.Result.B_C100, 4)</td>
+                <td>м</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Перепад давления газов в верхней зоне (ΔPВ)</td>
+                <td>@Math.Round(Model.Result.B_C101, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">"Средняя" температура в верхней зоне (t'В)</td>
+                <td>@Math.Round(Model.Result.B_C102, 4)</td>
+                <td>°С</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Абсолютное среднее давление в верхней зоне (P'ГВ)</td>
+                <td>@Math.Round(Model.Result.B_C103, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент сопротивления слоя шихты (LamdaВ)</td>
+                <td>@Math.Round(Model.Result.B_C104, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент пропорциональности между минутным расходом дутья и скоростью фильтрации газа в верхней зоне печи (кВ) </td>
+                <td>@Math.Round(Model.Result.B_C105, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Коэффициент АВ (АВ)</td>
+                <td>@Math.Round(Model.Result.B_C106, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Активная высота слоя шихты продуваемая газами (НА)</td>
+                <td>@Math.Round(Model.Result.B_C110, 4)</td>
+                <td>м</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Степень уравновешивания шихты (СУ)</td>
+                <td>@Math.Round(Model.Result.B_C111, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Перепад давления газов по высоте слоя шихты (ΔPКР)</td>
+                <td>@Math.Round(Model.Result.B_C112, 4)</td>
+                <td>атм</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Критический расход дутья (Vд)</td>
+                <td>@Math.Round(Model.Result.B_C113, 4)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость фильтрации газового потока через верхнюю часть горна при н.у. (WГОРН)</td>
+                <td>@Math.Round(Model.Result.B_C114, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Действительная скорость движения газа в верхней части горна печь (WГОРНФАК)</td>
+                <td>@Math.Round(Model.Result.B_C115, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость фильтрации газового потока в области распара печи (WРАСПАР)</td>
+                <td>@Math.Round(Model.Result.B_C116, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость движения газа в области распара с учётом действительных параметров газа и сучётом порозности слоя (WраспФАК)</td>
+                <td>@Math.Round(Model.Result.B_C117, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость фильтрации газового потока через колошник печи (Wколошник)</td>
+                <td>@Math.Round(Model.Result.B_C118, 4)</td>
+                <td>м/с</td>
+            </tr>
+            <tr>
+                <td colspan="3" scope="row">Скорость движения газа через колошник с учётом действительных параметров газа и сучётом порозности слоя (WколошникФАК)</td>
+                <td>@Math.Round(Model.Result.B_C119, 4)</td>
+                <td>м/с</td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: center;">ДАТА ПРОВЕДЕНИЯ РАСЧЕТА</td>
+                <td colspan="3" style="text-align: center;">@Model.Input.DateOfResult</td>
+            </tr>
+        </table>
+
+    </div>
+</section>

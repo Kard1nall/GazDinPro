@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GazDinPro</title>
+    <link rel="stylesheet" href="~/css/custom-style.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="header__content">
+                <a class="header__logo" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/fire_torf.png" alt="Alternate Text" />
+                    <span class="header__logo-text">GazDinPro</span>
+                </a>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a class="navigation__link" asp-area="" asp-controller="Home" asp-action="Inputs">Варианты исходных данных</a></li>
+                    <li><button class="navigation__link result-table-export">Экспорт в Excel</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main">
+        @RenderBody()
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">Copyright &copy; 2021 | Расчёт проектных показателей газодинамического режима доменной печи
+                </div>
+        </div>
+    </footer>
+
+    <script src="~/js/jquery-numeric.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
