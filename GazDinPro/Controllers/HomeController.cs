@@ -156,6 +156,7 @@ namespace GazDinPro.Controllers
         public IActionResult Result(InputDataModel input)
         {
             ResultViewModel viewModel = new ResultViewModel(input);
+            ViewBag.isProject = true;
 
             return View(viewModel);
         }

@@ -1291,5 +1291,15 @@
             </tr>
         </table>
 
+        <div class="checkbox-content">
+            <input id="checkbox-save" type="checkbox" name="isProject" value="true" checked>
+            <label for="checkbox-save">Проектный режим</label>
+        </div>
+        @if (ViewBag.isProject.value ==true)
+        {
+    <button id="submitButton" class="form__submit" type="submit">Выполнить расчёт</button>}
+
+        <button id="submitButton" class="form__submit" type="submit">Выполнить расчёт</button>
+
     </div>
 </section>
